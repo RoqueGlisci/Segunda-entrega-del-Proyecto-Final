@@ -2,7 +2,7 @@ let productosDao;
 let carritosDao;
 
 //se tiene que cambiar por 'firebase' o 'mongodb' o 'json'
-switch ("mongodb") {
+switch ("firebase") {
   // switch (process.env.PERS) {
   case "json":
     const { default: ProductosDaoArchivo } = await import(

@@ -39,8 +39,10 @@ class ContenedorFirebase {
 
   async guardar(nuevoElem) {
     try {
-      
-      const lastId = (await this.getIdMax()) + 1;
+      const objects = await this.listarAll();
+      const lastElement = objects[objects.length - 1];
+
+      const lastId = parseInt(lastElement.id) + 1;
 
       let doc = this.coleccion.doc(`${lastId}`);
 
@@ -51,16 +53,6 @@ class ContenedorFirebase {
       };
       
       await doc.create(object);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async getIdMax() {
-    try {
-        const objects = await this.listarAll();
-        const lastElement = objects[objects.length - 1];
-      return parseInt(lastElement.id);
     } catch (error) {
       console.log(error);
     }
